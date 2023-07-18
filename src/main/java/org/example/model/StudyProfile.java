@@ -1,9 +1,10 @@
-package org.example;
+package org.example.model;
 
 public enum StudyProfile {
-    MEDICINE("Медицина"),
-    PHYSICS("Физика"),
-    MATH("Математика");
+    PHYSICS("PHYSICS"),
+    MEDICINE("MEDICINE"),
+    LINGUISTICS("LINGUISTICS"),
+    MATHEMATICS("MATHEMATICS");
 
     String profileName;
 
