@@ -7,8 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ExcelWriter {
+
+    private static final Logger logger = Logger.getLogger(ExcelWriter.class.getName());
+
     public static final String STATISTIC_PAGE_NAME = "Статистика";
     public static final int HEADER_ROW = 1;
     private static final int PROFILE_COL = 1;
@@ -24,7 +29,9 @@ public class ExcelWriter {
     private ExcelWriter() {
     }
 
-    public static void writeXlsStatistics(List<Statistics> statisticsList, String filePath) throws IOException {
+    public static void writeXlsStatistics(List<Statistics> statisticsList, String filePath)  {
+
+        logger.log(Level.INFO, "Export statistic started");
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet(STATISTIC_PAGE_NAME);
@@ -83,7 +90,13 @@ public class ExcelWriter {
             sheet.autoSizeColumn(UNIVERSITY_NAMES_COL);
         }
 
-        OutputStream fileOut = new FileOutputStream(filePath);
-        workbook.write(fileOut);
+        try {
+            OutputStream fileOut = new FileOutputStream(filePath);
+            workbook.write(fileOut);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error on export statistic to excel file", e);
+        }
+
+        logger.log(Level.INFO, "Export statistic ended");
     }
 }

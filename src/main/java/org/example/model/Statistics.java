@@ -1,11 +1,28 @@
 package org.example.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Statistics {
+
+    @XmlElement(name = "profile")
     private StudyProfile profile;
+
+    @XmlElement(name = "avgExamScore")
     private float avgExamScore;
+
+    @XmlElement(name = "studentCount")
     private int studentCount;
+
+    @XmlElement(name = "universityCount")
     private int universityCount;
+
+    @XmlTransient
     private String universityNames;
+
     public StudyProfile getProfile() {
         return profile;
     }

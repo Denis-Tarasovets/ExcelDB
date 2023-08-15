@@ -11,8 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ExcelReader {
+
+    private static final Logger logger = Logger.getLogger(ExcelReader.class.getName());
 
     public static final String UNIVERSITY_PAGE = "Университеты";
     public static final int UNIVERSITY_ID_COL = 0;
@@ -31,6 +35,8 @@ public class ExcelReader {
     }
 
     public static List<University> readUniversities(String filePath) {
+
+        logger.log(Level.INFO, "Reading universities started");
 
         List<University> universities = new ArrayList<>();
         try {
@@ -51,13 +57,18 @@ public class ExcelReader {
                 university.setMainProfile(StudyProfile.valueOf(StudyProfile.class, currentRow.getCell(UNIVERSITY_PROFILE_COL).getStringCellValue()));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Reading universities error", e);
+            return universities;
         }
+
+        logger.log(Level.INFO, "Report universities ended");
 
         return universities;
     }
 
     public static List<Student> readStudents(String filePath) {
+
+        logger.log(Level.INFO, "Reading students started");
 
         List<Student> students = new ArrayList<>();
         try {
@@ -77,8 +88,11 @@ public class ExcelReader {
                 student.setAvgExamScore((float)currentRow.getCell(STUDENT_SCORE_COL).getNumericCellValue());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Reading students error", e);
+            return students;
         }
+
+        logger.log(Level.INFO, "Report students ended");
 
         return students;
     }

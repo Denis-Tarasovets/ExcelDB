@@ -11,15 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class ReportGenerator {
+
+    private static final Logger logger = Logger.getLogger(ReportGenerator.class.getName());
 
     private ReportGenerator() {
     }
 
     public static List<Statistics> createReport(List<Student> students,
                                                     List<University> universities) {
+
+        logger.log(Level.INFO, "Report generation started");
 
         List<Statistics> report = new ArrayList<>();
 
@@ -61,6 +67,8 @@ public class ReportGenerator {
 
             report.add(statistics);
         });
+
+        logger.log(Level.INFO, "Report generation ended");
 
         return report;
     }
