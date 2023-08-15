@@ -4,7 +4,7 @@ import org.example.comparator.*;
 import org.example.model.Statistics;
 import org.example.model.Student;
 import org.example.model.University;
-import org.example.model.XmlStudInfo;
+import org.example.model.StudInfo;
 
 import java.io.IOException;
 import java.util.Date;
@@ -23,7 +23,7 @@ public class Main {
 
         List<University> universities;
         List<Student> students;
-        XmlStudInfo  studInfo;
+        StudInfo studInfo;
 
         try {
             LogManager.getLogManager().readConfiguration(
@@ -47,13 +47,14 @@ public class Main {
         List<Statistics> statisticsList = ReportGenerator.createReport(students, universities);
         ExcelWriter.writeXlsStatistics(statisticsList, "src/main/resources/report.xlsx");
 
-        studInfo = new XmlStudInfo()
+        studInfo = new StudInfo()
                 .setUniversityList(universities)
                 .setStudentList(students)
                 .setStatisticsList(statisticsList)
                 .setProcessDate(new Date());
 
-        XmlWriter.exportXML(studInfo, "src/main/resources/report.xml");
+        XmlWriter.exportXML(studInfo, "src/main/resources/xml/report.xml");
+        JsonWriter.exportJSON(studInfo, "src/main/resources/json/report.json");
 
         logger.log(Level.INFO, "Application ended");
     }

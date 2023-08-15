@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.model.XmlStudInfo;
+import org.example.model.StudInfo;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -16,12 +16,12 @@ public class XmlWriter {
     private XmlWriter() {
     }
 
-    public static void exportXML(XmlStudInfo studInfo, String filePath) {
+    public static void exportXML(StudInfo studInfo, String filePath) {
+
+        logger.log(Level.INFO, "XML export started");
 
         try {
-            logger.log(Level.INFO, "XML export started");
-
-            JAXBContext jaxbContext = JAXBContext.newInstance(XmlStudInfo.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(StudInfo.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 

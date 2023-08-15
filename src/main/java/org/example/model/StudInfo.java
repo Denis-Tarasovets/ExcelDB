@@ -6,9 +6,9 @@ import java.util.List;
 
 @XmlRootElement(name = "root")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlStudInfo {
+public class StudInfo {
 
-    public XmlStudInfo() {
+    public StudInfo() {
     }
 
     @XmlElementWrapper(name = "universityList")
@@ -30,7 +30,7 @@ public class XmlStudInfo {
         return universityList;
     }
 
-    public XmlStudInfo setUniversityList(List<University> universityList) {
+    public StudInfo setUniversityList(List<University> universityList) {
         this.universityList = universityList;
         return this;
     }
@@ -39,7 +39,7 @@ public class XmlStudInfo {
         return studentList;
     }
 
-    public XmlStudInfo setStudentList(List<Student> studentList) {
+    public StudInfo setStudentList(List<Student> studentList) {
         this.studentList = studentList;
         return this;
     }
@@ -48,7 +48,7 @@ public class XmlStudInfo {
         return statisticsList;
     }
 
-    public XmlStudInfo setStatisticsList(List<Statistics> statisticsList) {
+    public StudInfo setStatisticsList(List<Statistics> statisticsList) {
         this.statisticsList = statisticsList;
         return this;
     }
@@ -57,7 +57,7 @@ public class XmlStudInfo {
         return processDate;
     }
 
-    public XmlStudInfo setProcessDate(Date processDate) {
+    public StudInfo setProcessDate(Date processDate) {
         this.processDate = processDate;
         return this;
     }
