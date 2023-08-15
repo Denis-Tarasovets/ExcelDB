@@ -33,6 +33,6 @@ public class XmlWriter {
             return;
         }
 
-        logger.log(Level.INFO, "XML export started");
+        logger.log(Level.INFO, "XML export ended");
     }
 }
